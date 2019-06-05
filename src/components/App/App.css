@@ -1,1 +1,72 @@
+.App {
+  background: rgb(52, 53, 55);
+  background: linear-gradient(131deg, rgba(52, 53, 55, 1) 0%, rgba(43, 207, 44, 0.8673844537815126) 66%, rgba(6, 24, 43, 0.7469362745098039) 100%);
+}
 
+#calDiv {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#listDiv {
+  width: 1300px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#firstInputDiv {
+  padding-top: 50px;
+}
+
+#operationButtonDiv {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+#secondInputDiv {
+  margin-top: 50px;
+}
+
+#lastDiv {
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+button {
+  margin-top: 10px;
+  margin-left: 10px;
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+button:hover {
+  background-color: grey;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input {
+  border-style: double;
+  height: 30px;
+  width: 150px;
+}

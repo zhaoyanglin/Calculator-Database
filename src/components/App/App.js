@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './App.css'
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   getList = () => {
-    this.props.dispatch({ type: 'FETCH_LIST'});
+    this.props.dispatch({ type: 'FETCH_LIST' });
   }
 
   handleChangFor = (key) => (event) => {
@@ -40,10 +41,10 @@ class App extends Component {
   }
 
   onClick = () => {
-    if (this.state.firstValue === '' || this.state.secondValue === ''){
+    if (this.state.firstValue === '' || this.state.secondValue === '') {
       alert("PLEASE FILL IN BOTH INPUTS BEFORE CONTINUING!!!!!!!!")
     }
-      else if (this.state.operation === '+') {
+    else if (this.state.operation === '+') {
       this.setState({
         result: Number(this.state.firstValue) + Number(this.state.secondValue)
       }, () => {
@@ -69,64 +70,73 @@ class App extends Component {
       this.setState({
         result: this.state.firstValue / this.state.secondValue
 
-      }, () =>{
+      }, () => {
         this.postToSaga()
       })
     }
   }
-  
+
   postToSaga = () => {
     this.props.dispatch({ type: 'POST_RESULT', payload: this.state })
   }
 
-render() {
-  console.log(this.state.operation);
-  console.log(this.state);
-  console.log('this is the response data====================', this.props.reduxState.calculatorReducer);
+  render() {
+    console.log(this.state.operation);
+    console.log(this.state);
+    console.log('this is the response data====================', this.props.reduxState.calculatorReducer);
 
-  let TopTenList = null;
-  TopTenList = this.props.reduxState.calculatorReducer.map((data,i) => {
+    let TopTenList = null;
+    TopTenList = this.props.reduxState.calculatorReducer.map((data, i) => {
+      return (
+        <div>
+          <li key={i} >{data.first_value} {data.operation} {data.second_value} = {data.result}</li>
+          <br />
+        </div>
+      )
+    })
+
     return (
-      <li key={i} >{data.first_value} {data.operation} {data.second_value} = {data.result}</li>
-    )
-  })
 
-  return (
+      <div className="App" >
 
-    <div className="App" >
+        <div id='calDiv'>
 
-      <div>
-        <input id='fisrtVal' placeholder='first value' onChange={this.handleChangFor('firstValue')} value={this.state.firstValue} />
+          <div id='firstInputDiv'>
+            <input id='fisrtVal' placeholder='first value' onChange={this.handleChangFor('firstValue')} value={this.state.firstValue} />
+          </div>
+
+          <div id='operationButtonDiv'>
+            <button onClick={() => this.onChangeOperation('+')}>+</button>
+            <br />
+            <button onClick={() => this.onChangeOperation('-')}>-</button>
+            <br />
+            <button onClick={() => this.onChangeOperation('*')}>*</button>
+            <br />
+            <button onClick={() => this.onChangeOperation('/')}>/</button>
+          </div>
+
+          <div id='secondInputDiv'>
+            <input id='secondVal' placeholder='second value' onChange={this.handleChangFor('secondValue')} value={this.state.secondValue} />
+          </div>
+
+          <div id='lastDiv'>
+            <button onClick={() => this.onClick()} > = </button>
+            <button onClick={() => this.onclickClear()}>C</button>
+          </div>
+
+        </div>
 
         <br />
 
-        <button onClick={() => this.onChangeOperation('+')}>+</button>
-        <button onClick={() => this.onChangeOperation('-')}>-</button>
-        <button onClick={() => this.onChangeOperation('*')}>*</button>
-        <button onClick={() => this.onChangeOperation('/')}>/</button>
+        <div id='listDiv'>
+          <ul>
+            {TopTenList}
+          </ul>
+        </div>
 
-        <br />
-
-        <input id='secondVal' placeholder='second value' onChange={this.handleChangFor('secondValue')} value={this.state.secondValue} />
-
-        <br />
-        
-        <button onClick={() => this.onClick()} > = </button>
-
-        <button onClick={() => this.onclickClear()}>C</button>
       </div>
-
-      <br />
-
-      <div>
-        <ul>
-          {TopTenList}
-        </ul>
-      </div>
-
-    </div>
-  );
-}
+    );
+  }
 }
 
 const mapStateToProps = reduxState => ({
