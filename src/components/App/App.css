@@ -1,6 +1,6 @@
 .App {
-  background: rgb(52, 53, 55);
-  background: linear-gradient(131deg, rgba(52, 53, 55, 1) 0%, rgba(43, 207, 44, 0.8673844537815126) 66%, rgba(6, 24, 43, 0.7469362745098039) 100%);
+  background: rgb(238, 174, 202);
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 
 #calDiv {
